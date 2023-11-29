@@ -5,15 +5,15 @@ public class Administrador {
 	private String nombre;
 	private String email;
 	private String telefono;
-	private String contaseña;
+	private String contraseña;
 	
 	private static long total = 0;
 	
-	public Administrador(String nombre, String email, String telefono, String contaseña) {
+	public Administrador(String nombre, String email, String telefono, String contraseña) {
 		this.nombre = nombre;
 		this.email = email;
 		this.telefono = telefono;
-		this.contaseña = contaseña;
+		this.contraseña = contraseña;
 		Administrador.total++;
 		this.Id=total;
 	} // constructor
@@ -53,19 +53,19 @@ public class Administrador {
 					this.telefono = telefono;
 				}
 			
-				public String getContaseña() {
-					return contaseña;
+				public String getContraseña() {
+					return contraseña;
 				}
 			
-				public void setContaseña(String contaseña) {
-					this.contaseña = contaseña;
+				public void setContraseña(String contraseña) {
+					this.contraseña = contraseña;
 				}
 
 
 @Override
 public String toString() {
 return "Administrador [Id=" + Id + ", nombre=" + nombre + ", email=" + email + ", telefono="
-+ telefono + ", contaseña=" + contaseña + "]";
++ telefono + ", contraseña=" + contraseña + "]";
 } // ToString
 
 
