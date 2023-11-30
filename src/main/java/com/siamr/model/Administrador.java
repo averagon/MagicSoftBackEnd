@@ -1,7 +1,7 @@
 package com.siamr.model;
 
 public class Administrador {
-	private Long Id;
+	private Long id;
 	private String nombre;
 	private String email;
 	private String telefono;
@@ -15,17 +15,17 @@ public class Administrador {
 		this.telefono = telefono;
 		this.contraseña = contraseña;
 		Administrador.total++;
-		this.Id=total;
+		this.id=total;
 	} // constructor
 	
 		public Administrador() {
 			Administrador.total++; 
-			this.Id= total;
+			this.id= total;
 			} // constructor vacio ID
 	
 
 				public Long getId() {
-					return Id;
+					return id;
 				}
 
 
@@ -64,7 +64,7 @@ public class Administrador {
 
 @Override
 public String toString() {
-return "Administrador [Id=" + Id + ", nombre=" + nombre + ", email=" + email + ", telefono="
+return "Administrador [Id=" + id + ", nombre=" + nombre + ", email=" + email + ", telefono="
 + telefono + ", contraseña=" + contraseña + "]";
 } // ToString
 

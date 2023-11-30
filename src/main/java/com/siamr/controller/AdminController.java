@@ -17,11 +17,8 @@ import com.siamr.model.Administrador;
 import com.siamr.service.AdministradorServicios;
 
 @RestController
-@RequestMapping(path="/api/administrador/") // http://localhost:8080/administrador/
-
-
-		public class AdminController {
-
+@RequestMapping(path="/api/administrador/") //  http://localhost:8080/api/administrador/
+public class AdminController {
 	private final AdministradorServicios administradorServicios;
 	
 	@Autowired
@@ -30,27 +27,27 @@ import com.siamr.service.AdministradorServicios;
 	}
 
 
-	@GetMapping //http://localhost:8080/api/productos/
+	@GetMapping //  http://localhost:8080/api/administrador/
 	public ArrayList<Administrador> getAllAdmin () {
 		return administradorServicios.getAllAdministrador();
 	}
 	
-	@GetMapping (path="{adminId}") //http://localhost:8080/api/productos/1
-	public Administrador getAdministrador (@PathVariable ("admindId") long id) {
+	@GetMapping(path="{adminId}") //http://localhost:8080/api/administrador/1
+	public Administrador getAdministrador (@PathVariable ("adminId") long id) {
 		return administradorServicios.getAdministrador(id);
 	}//getproducto
 	
-	@DeleteMapping (path="{adminId}") //http://localhost:8080/api/productos/
+	@DeleteMapping(path="{adminId}") //  http://localhost:8080/api/administrador/1
 	public Administrador deleteAdministrador (@PathVariable ("adminId") long id) {
 		return administradorServicios.deleteAdministrador(id);
 	}//deleteproducto
 	
-	@PostMapping  //http://localhost:8080/api/productos/
+	@PostMapping  //  http://localhost:8080/api/administrador/
 	public Administrador addAdministrador(@RequestBody Administrador administrador) {
 		return administradorServicios.addAdministrador(administrador);
 	}
 	
-	@PutMapping (path="{adminId}") //http://localhost:8080/api/productos/
+	@PutMapping(path="{adminId}") //  http://localhost:8080/api/administrador/8?email=calmatePiojosa@gmail.com
 	public Administrador updateAdministrador(@PathVariable ("adminId") long id, 
 			@RequestParam(required=false) String nombre,
 			@RequestParam(required=false) String email,
