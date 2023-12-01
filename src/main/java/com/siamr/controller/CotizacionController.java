@@ -1,6 +1,6 @@
 package com.siamr.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,7 +17,7 @@ import com.siamr.model.Cotizacion;
 import com.siamr.service.CotizacionService;
 
 @RestController
-@RequestMapping(path="/api/cotizaciones/") 
+@RequestMapping(path="/api/cotizacion/") //http://localhost:8080/api/cotizacion/
 
 public class CotizacionController {
 	private final CotizacionService cotizacionService;
@@ -27,8 +27,8 @@ public class CotizacionController {
 		this.cotizacionService = cotizacionService;
 	}//constructor
 	
-	@GetMapping 			//http://localhost:8080/api/cotizaciones/
-	public ArrayList<Cotizacion> getAllCotizaciones(){
+	@GetMapping 			//http://localhost:8080/api/cotizacion/
+	public List<Cotizacion> getAllCotizaciones(){
 		return cotizacionService.getAllCotizaciones();
 	}//ArrayList
 	
