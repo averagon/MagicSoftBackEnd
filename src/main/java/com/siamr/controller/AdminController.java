@@ -1,6 +1,6 @@
 package com.siamr.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,19 +28,19 @@ public class AdminController {
 
 
 	@GetMapping //  http://localhost:8080/api/administrador/
-	public ArrayList<Administrador> getAllAdmin () {
+	public List<Administrador> getAllAdmin () {
 		return administradorServicios.getAllAdministrador();
 	}
 	
 	@GetMapping(path="{adminId}") //http://localhost:8080/api/administrador/1
 	public Administrador getAdministrador (@PathVariable ("adminId") long id) {
 		return administradorServicios.getAdministrador(id);
-	}//getproducto
+	}//getAdministrador
 	
 	@DeleteMapping(path="{adminId}") //  http://localhost:8080/api/administrador/1
 	public Administrador deleteAdministrador (@PathVariable ("adminId") long id) {
 		return administradorServicios.deleteAdministrador(id);
-	}//deleteproducto
+	}//deleteAdministrador
 	
 	@PostMapping  //  http://localhost:8080/api/administrador/
 	public Administrador addAdministrador(@RequestBody Administrador administrador) {
@@ -60,4 +60,4 @@ public class AdminController {
 	
 	
 	
-}//class ProductoController
+}//class AdministradorController

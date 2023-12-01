@@ -1,26 +1,37 @@
 package com.siamr.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "administrador")
+
 public class Administrador {
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column (name = "id", unique = true, nullable = false)
 	private Long id;
+	@Column (nullable = false)
 	private String nombre;
+	@Column (nullable = false)
 	private String email;
+	@Column (nullable = false)
 	private String telefono;
+	@Column (nullable = false)
 	private String contraseña;
-	
-	private static long total = 0;
 	
 	public Administrador(String nombre, String email, String telefono, String contraseña) {
 		this.nombre = nombre;
 		this.email = email;
 		this.telefono = telefono;
 		this.contraseña = contraseña;
-		Administrador.total++;
-		this.id=total;
 	} // constructor
 	
 		public Administrador() {
-			Administrador.total++; 
-			this.id= total;
 			} // constructor vacio ID
 	
 
