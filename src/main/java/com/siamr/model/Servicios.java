@@ -1,25 +1,36 @@
 package com.siamr.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table (name= "servicios")
 public class Servicios {
-	private Long Id;
+	@Id
+	 @GeneratedValue(strategy= GenerationType.IDENTITY)
+	 @Column (name = "id", unique = true, nullable = false)
+	 private Long id;
+	 @Column (nullable = false)
 	private String nombre;
-	private String descrpcion;
+	 @Column (nullable = false)
+	private String descripcion;
+	 @Column (nullable = false)
 	private String imagen;
 	
-	private static long total = 0;
 	
 	public Servicios(String nombre, String descrpcion, String imagen) {
 		this.nombre = nombre;
-		this.descrpcion = descrpcion;
+		this.descripcion = descrpcion;
 		this.imagen = imagen;
-		Servicios.total++;
-		this.Id=total;
 	} // constructor
 	
 	
 		public Servicios() {
-			Servicios.total++; 
-			this.Id= total;
+
 			} // constructor2
 	
 	
@@ -33,11 +44,11 @@ public class Servicios {
 			}
 		
 			public String getDescrpcion() {
-				return descrpcion;
+				return descripcion;
 			}
 		
 			public void setDescrpcion(String descrpcion) {
-				this.descrpcion = descrpcion;
+				this.descripcion = descrpcion;
 			}
 		
 			public String getImagen() {
@@ -49,15 +60,21 @@ public class Servicios {
 			}
 		
 			public Long getId() {
-				return Id;
+				return id;
 			}
 
 	
 	
 	@Override
 	public String toString() {
-		return "Servicios [Id=" + Id + ", nombre=" + nombre + ", descrpcion=" + descrpcion + ", imagen=" + imagen + "]";
+		return "Servicios [Id=" + id + ", nombre=" + nombre + ", descrpcion=" + descripcion + ", imagen=" + imagen + "]";
 	} //toString
+
+
+	public void setDescripcion(String descripcion) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 } // class

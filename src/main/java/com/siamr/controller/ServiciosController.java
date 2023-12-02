@@ -1,6 +1,7 @@
 package com.siamr.controller;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,7 @@ public class ServiciosController {
 
 
 @GetMapping
-public ArrayList<Servicios> getAllServicios(){
+public List<Servicios> getAllServicios(){
 	return serviciosService.getAllServicios();
 }//getAllServicios
 
