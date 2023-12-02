@@ -1,5 +1,5 @@
 package com.siamr.controller;
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +32,9 @@ public class VentasController {
 		this.ventasServicio = ventasServicio;
 	}
 	@GetMapping
-    	public ArrayList<Ventas>  getAllVentas(){
+
+    	public List<Ventas>  getAllVentas(){
+
     		
     		return ventasServicio.getAllVentas();
     	
