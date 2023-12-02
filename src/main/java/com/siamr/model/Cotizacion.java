@@ -1,15 +1,30 @@
 package com.siamr.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table (name= "cotizacion")
 public class Cotizacion {
-	
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="id", unique=true, nullable=false)
 	private Long id;
+	@Column(nullable=false)
 	private String nombre;
+	@Column(nullable=false)
 	private String email;
+	@Column(nullable=false)
 	private String telefono;
+	@Column(nullable=false)
 	private String empresa;
+	@Column(nullable=false)
 	private String mensaje;
 
-	private static long total=0;
 
 	//1. Constructor
 	public Cotizacion(String nombre, String email, String telefono, String empresa, String mensaje) {
@@ -19,13 +34,10 @@ public class Cotizacion {
 		this.empresa = empresa;
 		this.mensaje = mensaje;
 		
-		Cotizacion.total++;
-		this.id=total;
 	}//constructor
 	
 	public Cotizacion() {
-		Cotizacion.total++;
-		this.id=total;
+
 	}//constructor
 
 	//2. Getters and setters (encapsular)
