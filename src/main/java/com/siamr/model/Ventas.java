@@ -1,22 +1,35 @@
 package com.siamr.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ventas")
+
 public class Ventas {
+	@Id
+	 @GeneratedValue(strategy= GenerationType.IDENTITY)
+	 @Column (name = "id", unique = true, nullable = false)
 	private Long Id;
+	@Column (nullable = false)
 	private Double precio;
+	@Column (nullable = false)
 	private String fecha;
 	
-	private static long total = 0;
+	
 
 	public Ventas(Double precio, String fecha) {
 		this.precio = precio;
 		this.fecha = fecha;
-		Ventas.total++;
-		this.Id=total;
+		
 	} // constructor
 	
 	public Ventas() {
-		Ventas.total++; 
-		this.Id= total;
+		
 		} // constructor2
 
 	public Long getId() {
