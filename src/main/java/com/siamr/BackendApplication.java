@@ -16,15 +16,15 @@ public class BackendApplication {
 	}// MAIN
 
 	
-	@Bean
-	public FilterRegistrationBean<JwtFilter> jwtFilter(){
-		FilterRegistrationBean<JwtFilter> registrationBean = 
-							new FilterRegistrationBean<>();
-		registrationBean.setFilter(new JwtFilter());
-		registrationBean.addUrlPatterns("/api/servicios/*");
-		registrationBean.addUrlPatterns("/api/usuarios/*");
-		return registrationBean;
-	}//jwtFilter
+//	@Bean
+//	public FilterRegistrationBean<JwtFilter> jwtFilter(){
+//		FilterRegistrationBean<JwtFilter> registrationBean = 
+//							new FilterRegistrationBean<>();
+//		registrationBean.setFilter(new JwtFilter());
+//		registrationBean.addUrlPatterns("/api/servicios/*");
+//		registrationBean.addUrlPatterns("/api/usuarios/*");
+//		return registrationBean;
+//	}//jwtFilter
 
 } // class BackendApplication
 
