@@ -67,44 +67,36 @@ botonLogin.addEventListener("click", function(event){
 			console.log(res);
 			console.log(res.length);
 			productos=res;
-			Array.from(res).forEach((p,index)=>{
+			//Array.from(res).forEach((p,index)=>{
 				//validar email de res con mailLogin
-			}); //for each
+			//}); //for each
+			
+			const user = res.find((person) => person.email == mailLogin.value);
+		      if(user == undefined){
+		        msj_error="No existe usuario registrado con este correo";
+		        showErrorMessage(loginAlert, mailLogin, msj_error);
+		        console.log("MailNotFound:", msj_error, mailLogin.value);
+		      } else {
+		        if ( user.contraseña !== passLogin.value) {
+		          msj_error="Contraseña Incorrecta";
+		          showErrorMessage(loginAlert, passLogin, msj_error);
+		          console.log("IncorrectPassword:", msj_error, passLogin.value);
+		        } else {
+		          console.log("Correcto");
+		          localStorage.setItem("user", mailLogin.value);
+		          localStorage.setItem("pass", passLogin.value);
+		          location.href ='./gestion.html';
+		        }// if pass check
+		      }// if user empty
+      
 		}); //then
 		}).catch(function(error){
-			console.log("Problema en el JSON", error)
-    });
-    	
-
-	  
-	  
-	  
-	  
-	  
-    const storedUsers = JSON.parse(localStorage.getItem("users"));
-    
-    if(storedUsers == null){
-      msj_error="No existe usuario registrado con este correo";
-      showErrorMessage(loginAlert, mailLogin, msj_error);
-      console.log("MailNotFound:", msj_error, mailLogin.value);
-    } else {
-      const user = storedUsers.find((person) => person.email == mailLogin.value);
-      if(user == undefined){
-        msj_error="No existe usuario registrado con este correo";
-        showErrorMessage(loginAlert, mailLogin, msj_error);
-        console.log("MailNotFound:", msj_error, mailLogin.value);
-      } else {
-        if ( user.contraseña !== passLogin.value) {
-          msj_error="Contraseña Incorrecta";
-          showErrorMessage(loginAlert, passLogin, msj_error);
-          console.log("IncorrectPassword:", msj_error, passLogin.value);
-        } else {
-          console.log("Correcto");
-          localStorage.setItem("user", mailLogin.value);
-          localStorage.setItem("pass", passLogin.value);
-          location.href ='./gestion.html';
-        }// if pass check
-      }// if user empty
-    }//if storedUsers null
+			console.log("Problema en el JSON", error);
+			msj_error="No existe usuario registrado con este correo";
+		      showErrorMessage(loginAlert, mailLogin, msj_error);
+		      console.log("MailNotFound:", msj_error, mailLogin.value);
+    }); 
+	      
+   
   }// isValid
 });//btnLogin
