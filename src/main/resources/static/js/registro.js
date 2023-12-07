@@ -90,13 +90,37 @@ boton.addEventListener("click", function(event){
   let $repPw = document.getElementById("contraseñaconf");
   const isValid = validateSignup($name,$phone,$email,$pass,$repPw);
 
+  let admName = $name.value;
+  let admPhone = $phone.value;
+  let admEmail = $email.value;
+  let admPass = $pass.value;
+	
   if (isValid){
-    let newUser = `{"nombre": "${$name.value}","teléfono": "${$phone.value}",
-      "email": "${$email.value}", "contraseña": "${$pass.value}"}`;
-    users.push(JSON.parse(newUser));
-    localStorage.setItem("users", JSON.stringify(users));
+    let newUser = {nombre: admName,telefono: admPhone,
+      email: admEmail, contraseña: admPass};
+    //users.push(JSON.parse(newUser));
+    //localStorage.setItem("users", JSON.stringify(users));
 
-    taskcompleted("Usuario registrado correctamente");
-    cleanSignUpForm();
+	//FETCH PUT - ADD ADMINISTRADOR
+		const URL_MAIN='/api/administrador/'; 
+		console.log("TEST: Entra a registro");
+		fetch(URL_MAIN,{
+			method:'POST',
+			headers:{
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(newUser),
+			}).then(response=>response.json())
+	        .then(newUser=>{
+				console.log("Success: ", newUser);
+
+			    taskcompleted("Usuario registrado correctamente");
+			    cleanSignUpForm();
+			
+			})
+			.catch((error)=>{
+				console.log("Error: ", error);
+			});
+			    
   }//isValid
 });//btnSignup

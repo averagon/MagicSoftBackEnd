@@ -73,20 +73,43 @@ btnSubmit.addEventListener("click", function(event){
     const $uploadedimage = document.getElementById("uploadedimage");
     const urlImage = $uploadedimage.getAttribute("src");
     const isValid = validateService($service_name, $service_description, urlImage);
-    
-    if (isValid){
-        let service = `{"nombre": "${$service_name.value}",
-            "descripción": "${$service_description.value}",
-            "urlImage": "${urlImage}"
-            }`; //
-        services.push(JSON.parse(service)); 
-        localStorage.setItem("services", JSON.stringify(services)); 
+	
+	const servName = $service_name.value;
+	const servDesc = $service_description.value;
 
-        taskcompleted("Servicio registrado correctamente");
-        $service_name.value="";
-        $service_description.value="";
-        $service_name.focus();
-        $uploadedimage.src = imgDefault;
+    if (isValid){
+        let service = {nombre: servName,
+            descripcion: servDesc,
+            imagen: urlImage }; //
+        
+        //PARA LOCALSTORAGE
+        //services.push(JSON.parse(service)); 
+        //localStorage.setItem("services", JSON.stringify(services)); 
+
+		//FETCH PUT - ADD SERVICE
+		const URL_MAIN='/api/servicios/'; 
+		console.log("TEST: Entra a gestion_servicios");
+		fetch(URL_MAIN,{
+			method:'POST',
+			headers:{
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(service),
+			}).then(response=>response.json())
+	        .then(service=>{
+				console.log("Success: ", service);
+				
+		        taskcompleted("Servicio registrado correctamente");
+		        $service_name.value="";
+		        $service_description.value="";
+		        $service_name.focus();
+		        $uploadedimage.src = imgDefault;
+		        
+			})
+			.catch((error)=>{
+				console.log("Error: ", error);
+			});
+		
     }
 });//btnSubmit
 

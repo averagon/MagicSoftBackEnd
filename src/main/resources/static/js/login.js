@@ -53,7 +53,36 @@ botonLogin.addEventListener("click", function(event){
   const isValid = validateLogin(mailLogin, passLogin);
 
   if (isValid){
+	  
+	console.log("TEST: Entra al JS");
+	let productos;
+	const URL_MAIN='/api/administrador/'; 
+	  
+	  fetch(URL_MAIN,{
+		method:'get'
+		}).then( function(response){
+        response.json()
+        .then(function (res){
+			console.log("TEST: En fetch");
+			console.log(res);
+			console.log(res.length);
+			productos=res;
+			Array.from(res).forEach((p,index)=>{
+				//validar email de res con mailLogin
+			}); //for each
+		}); //then
+		}).catch(function(error){
+			console.log("Problema en el JSON", error)
+    });
+    	
+
+	  
+	  
+	  
+	  
+	  
     const storedUsers = JSON.parse(localStorage.getItem("users"));
+    
     if(storedUsers == null){
       msj_error="No existe usuario registrado con este correo";
       showErrorMessage(loginAlert, mailLogin, msj_error);
