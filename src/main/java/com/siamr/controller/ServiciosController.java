@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.siamr.model.Servicios;
 import com.siamr.service.ServiciosService;
 
+//@CrossOrigin(origins="*")
 @RestController
 @RequestMapping(path="/api/servicios/")//http://localhost:8080/api/servicios/
 

@@ -22,9 +22,9 @@ public class Servicios {
 	private String imagen;
 	
 	
-	public Servicios(String nombre, String descrpcion, String imagen) {
+	public Servicios(String nombre, String descripcion, String imagen) {
 		this.nombre = nombre;
-		this.descripcion = descrpcion;
+		this.descripcion = descripcion;
 		this.imagen = imagen;
 	} // constructor
 	
@@ -43,12 +43,12 @@ public class Servicios {
 				this.nombre = nombre;
 			}
 		
-			public String getDescrpcion() {
+			public String getDescripcion() {
 				return descripcion;
 			}
 		
-			public void setDescrpcion(String descrpcion) {
-				this.descripcion = descrpcion;
+			public void setDescripcion(String descripcion) {
+				this.descripcion = descripcion;
 			}
 		
 			public String getImagen() {
@@ -71,10 +71,7 @@ public class Servicios {
 	} //toString
 
 
-	public void setDescripcion(String descripcion) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
 } // class
