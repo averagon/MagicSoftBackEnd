@@ -4,14 +4,19 @@ import java.util.List;
 import java.util.Optional;
 
 import com.siamr.model.Administrador;
+import com.siamr.model.ChangePassword;
 import com.siamr.repository.AdministradorRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 @Service
 public class AdministradorServicios {
 	
 	private final AdministradorRepository administradorRepository; 
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 		
 @Autowired
 	public AdministradorServicios(AdministradorRepository administradorRepository) {
@@ -51,29 +56,47 @@ public class AdministradorServicios {
 
 
 	public Administrador addAdministrador(Administrador administrador) {
-		Optional <Administrador> tmpAdmin = administradorRepository.findByNombre(administrador.getNombre());
-		if (tmpAdmin.isEmpty()) { // no se encuentra el producto con ese nombre
-			return administradorRepository.save(administrador);
-		} else {
-			System.out.println("Ya existe el producto con el nombre ["
-					+  administrador.getNombre() + "]");
-			return null;
-		} // else
+		Administrador admin = null;
+		if  (administradorRepository.findByEmail(administrador.getEmail()).isEmpty())  {
+			//Cifrar la contraseña
+			administrador.setContraseña( passwordEncoder.encode(administrador.getContraseña()) );
+			admin = administradorRepository.save(administrador);
+		} else{
+			System.out.println("El usuario con el email [" + administrador.getEmail()	+ "] ya se encuentra registrado");
+		}//if isEmpty
+		return admin;
 	} // addAdministrador
 
 
-	public Administrador updateAdministrador(long id, String nombre, String email, String telefono,  String contraseña) {
+	public Administrador updateAdministrador(Long id, ChangePassword changePassword) {
 		Administrador admin = null;
-		
-		if(administradorRepository.existsById(id)) {
+		if (administradorRepository.existsById(id)) {
 			admin = administradorRepository.findById(id).get();
-			if(nombre!= null)admin.setNombre(nombre); 
-			if(email!= null)admin.setEmail(email); 
-			if(telefono!= null)admin.setTelefono(telefono); 
-			if(contraseña!= null)admin.setContraseña(contraseña); 
-			administradorRepository.save(admin);
-		} // existsById
-	return admin;
-} // updateProducto
+			if(passwordEncoder.matches(changePassword.getContraseña(),admin.getContraseña())) {
+				admin.setContraseña(passwordEncoder.encode(changePassword.getNewContraseña()));
+				administradorRepository.save(admin);
+			}else {
+				System.out.println("updateUser - La contraseña es incorrecta id[" + id
+						+ "]");
+				admin =null;
+			}//if equals
+		} else {
+			System.out.println("updateUser - El usuario con el id[" + id
+					+ "] NO se encuentra registrado");
+		}//else //if existById
+		return admin;
+	}//updateAdministrador
+		
+
+	public boolean validateAdministrador(Administrador administrador) {
+		Optional<Administrador> userByEmail = administradorRepository.findByEmail(administrador.getEmail()); 
+		if (userByEmail.isPresent()) {
+			Administrador admin = userByEmail.get();
+			if(passwordEncoder.matches(administrador.getContraseña(),admin.getContraseña())) {
+				return true;
+			}//if password equals
+		}//if isPresent
+		return false;
+	}//validateUser
 			
 } // class
