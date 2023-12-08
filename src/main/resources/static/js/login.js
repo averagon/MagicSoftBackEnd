@@ -55,7 +55,7 @@ botonLogin.addEventListener("click", function(event){
   if (isValid){
 	  
 	console.log("TEST: Entra al JS");
-	let productos;
+	let adminitradores;
 	const URL_MAIN='/api/administrador/'; 
 	  
 	  fetch(URL_MAIN,{
@@ -66,10 +66,8 @@ botonLogin.addEventListener("click", function(event){
 			console.log("TEST: En fetch");
 			console.log(res);
 			console.log(res.length);
-			productos=res;
-			//Array.from(res).forEach((p,index)=>{
-				//validar email de res con mailLogin
-			//}); //for each
+			adminitradores=res;
+			localStorage.setItem("total_admins", adminitradores.length);
 			
 			const user = res.find((person) => person.email == mailLogin.value);
 		      if(user == undefined){
@@ -83,8 +81,8 @@ botonLogin.addEventListener("click", function(event){
 		          console.log("IncorrectPassword:", msj_error, passLogin.value);
 		        } else {
 		          console.log("Correcto");
-		          localStorage.setItem("user", mailLogin.value);
-		          localStorage.setItem("pass", passLogin.value);
+		          localStorage.setItem("user", JSON.stringify(user));
+		          //localStorage.setItem("nameAdm", user.nombre);
 		          location.href ='./gestion.html';
 		        }// if pass check
 		      }// if user empty

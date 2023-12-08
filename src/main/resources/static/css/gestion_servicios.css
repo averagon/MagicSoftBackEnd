@@ -29,3 +29,20 @@
 #btns{
     justify-content: space-around;
 }
+
+#services-list{
+    padding: 40px 0;
+    max-width: 10
+}
+#refresh-icon{
+    text-align: right;
+}
+table{
+    table-layout: fixed;
+    width: 100%;
+}
+td {
+    overflow: hidden;
+    white-space: pre-wrap;
+  }
+

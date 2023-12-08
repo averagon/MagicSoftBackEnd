@@ -111,18 +111,46 @@ submit.addEventListener('click', function (event) {
     const service_text = contact_service.options[contact_service.selectedIndex].text;
     
     const isValid = validateContact(contact_name, contact_company, contact_email, contact_phone, contact_message, service_value);
-
+	
+	const cName = contact_name.value;
+	const cComp = contact_company.value;
+	const cEmail = contact_email.value;
+	const cPhone = contact_phone.value;
+	const cMsg = contact_message.value;
     if (isValid) {
+		let cotiz = {nombre: cName,
+		empresa: cComp, email: cEmail,
+		telefono: cPhone, mensaje: cMsg};
+		
       (function () {
         emailjs.init('4KBe--5Op9om1VvvF');
-      })();
+      })();//init communication
 
       let form = document.getElementById("contact-form");
       emailjs.sendForm(serviceID, templateID, form)
         .then(function () {
           console.log('SUCCESS!');
-          taskcompleted( "success", "Cotización enviada correctamente");   
-          cleanForm();       
+          
+          //FETCH PUT - ADD COTIZACION
+		const URL_MAIN='/api/cotizacion/'; 
+		console.log("TEST: Entra a cotizaciones");
+		fetch(URL_MAIN,{
+			method:'POST',
+			headers:{
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(cotiz),
+			}).then(response=>response.json())
+	        .then(cotiz=>{
+				console.log("Success: ", cotiz);
+          
+		          taskcompleted( "success", "Cotización enviada correctamente");   
+		          cleanForm();   
+		          
+		        })
+			.catch((error)=>{
+				console.log("Error: ", error);
+			});  //endFETCH    
         }, function (error) {
           console.log('FAILED...', error);
           taskcompleted( "error", "Falla en el servidor. Inténtelo de nuevo");          
@@ -136,48 +164,5 @@ submit.addEventListener('click', function (event) {
   });//CLEAN addEvenListener  
 
 
-/* function validarCampos() {
-  const nombre = document.getElementById("contact_name").value;
-  const telefono = document.getElementById("contact_phone").value;
-  const email = document.getElementById("contact_email").value;
-  const empresa = document.getElementById("contact_company").value;
-  const servicios = document.getElementById("contact_service")
-  const service_value = servicios.options[servicios.selectedIndex].value;
-  const mensaje = document.getElementById("contact_message").value;
-  
-  //msj_error.style.padding = "20px";
-  var text;
-  if (nombre.trim().length < 3) {
-    text = "Por favor introduce tu nombre completo";
-    warningAlert(text);
-    return false;
-  }
-  if (isNaN(telefono) || telefono.trim().length != 10 || /^(?!.*00)([1-9][0-9]{10})$/.test(telefono)) {
-    text = "El formato del teléfono es incorrecto";
-    warningAlert(text);
-    return false;
-  }
-  if (email.indexOf("@") == -1 || email.trim().length < 6) {
-    text = "Por favor, verifica tu correo electrónico";
-    warningAlert(text);
-    return false;
-  }
-  if (empresa.trim().length < 3) {
-    text = "Por favor escribe el nombre de tu empresa";
-    warningAlert(text);
-    return false;
-  }
-  if (servicios.value == "0") {
-    text = "Por favor selecciona una opción";
-    warningAlert(text);
-    return false;
-  }
-  if (mensaje.trim().length < 10) {
-    text = "Por favor escribe más de 10 caracteres en tu mensaje";
-    warningAlert(text);
-    return false;
-  }
-  //alert("Información enviada correctamente, pronto nos pondremos en contacto contigo");
-  return true;
-} */
+
 
