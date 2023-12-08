@@ -1,5 +1,4 @@
 const $alert_container = document.getElementById("alert-container");
-const refresh = document.getElementById("refresh-icon");
 const imgDefault = "./src/upload-image.jpg";
 let services = new Array();
 let message ;
@@ -160,9 +159,3 @@ window.addEventListener("load", function(){
     loadServices(servicerow); 
 });//onLoad
 
-
-refresh.addEventListener("click", function(event){
-    event.preventDefault();
-    let servicerow = document.getElementById("services-table");
-    loadServices(servicerow); 
-});//btnRefresh
