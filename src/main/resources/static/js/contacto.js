@@ -97,6 +97,8 @@ function validateContact(contact_name, contact_company, contact_email, contact_p
 const serviceID = 'service_w2y4zyc';
 const templateID = 'contact-template';
 
+
+
 //SEND EMAIL FROM CONTACT FORM
 submit.addEventListener('click', function (event) {
     event.preventDefault();
@@ -118,9 +120,7 @@ submit.addEventListener('click', function (event) {
 	const cPhone = contact_phone.value;
 	const cMsg = contact_message.value;
     if (isValid) {
-		let cotiz = {nombre: cName,
-		empresa: cComp, email: cEmail,
-		telefono: cPhone, mensaje: cMsg};
+		
 		
       (function () {
         emailjs.init('4KBe--5Op9om1VvvF');
@@ -130,7 +130,12 @@ submit.addEventListener('click', function (event) {
       emailjs.sendForm(serviceID, templateID, form)
         .then(function () {
           console.log('SUCCESS!');
+          taskcompleted( "success", "Cotización enviada correctamente");   
+		  cleanForm(); 
           
+          let cotiz = {nombre: cName,
+		empresa: cComp, email: cEmail,
+		telefono: cPhone, mensaje: cMsg};
           //FETCH PUT - ADD COTIZACION
 		const URL_MAIN='/api/cotizacion/'; 
 		console.log("TEST: Entra a cotizaciones");
@@ -143,10 +148,7 @@ submit.addEventListener('click', function (event) {
 			}).then(response=>response.json())
 	        .then(cotiz=>{
 				console.log("Success: ", cotiz);
-          
-		          taskcompleted( "success", "Cotización enviada correctamente");   
-		          cleanForm();   
-		          
+         	       	
 		        })
 			.catch((error)=>{
 				console.log("Error: ", error);
