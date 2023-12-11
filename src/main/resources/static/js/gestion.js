@@ -6,9 +6,9 @@ fetch(URL_MAIN,{
 		}).then( function(response){
         response.json()
         .then(function (res){
-			console.log("TEST: En fetch");
-			console.log(res);
-			console.log(res.length);
+			//console.log("TEST: En fetch");
+			//console.log(res);
+			//console.log(res.length);
 			servicios=res;
 			localStorage.setItem("total_servicios", servicios.length);
 			insertNumServices(servicios.length);
@@ -23,7 +23,7 @@ fetch(URL_MAIN,{
 
 function insertNumServices(totalServices){
 	const dataServices = document.getElementById("dataServices");
-    console.log("insertando serv:",totalServices);
+    //console.log("insertando serv:",totalServices);
     const numServices = ` ${totalServices} `;
     dataServices.innerHTML = numServices;
 }
@@ -32,15 +32,15 @@ function insertNumServices(totalServices){
 const totalAdmins = localStorage.getItem("total_admins");
 const dataUsers = document.getElementById("dataUsers");
 if (totalAdmins == null) {
-    console.log("No hay usuarios registrados en localstorage");
+    console.log("No hay usuarios en localstorage");
     var total = "0";
     insertNumUsers(total);
 }else{
-	console.log("total de admins: ",totalAdmins);
+	//console.log("total de admins: ",totalAdmins);
     insertNumUsers(totalAdmins);
 }
 function insertNumUsers(totalAdmins){
-	console.log("insertando admins:",totalAdmins);
+	//console.log("insertando admins:",totalAdmins);
     const numUsers = ` ${totalAdmins} `;
     dataUsers.innerHTML = numUsers;
 }
@@ -48,7 +48,7 @@ function insertNumUsers(totalAdmins){
 
 
 function loadCotizaciones(cotizrow){
-    console.log("TEST: Entra al loadServices JS");
+    //console.log("TEST: Entra al loadServices JS");
     let cotizaciones;
     const URL_MAIN='/api/cotizacion/'; 
     fetch(URL_MAIN,{
@@ -56,9 +56,9 @@ function loadCotizaciones(cotizrow){
         }).then( function(response){
         response.json()
         .then(function (res){
-            console.log("TEST: En fetch");
-            console.log(res);
-            console.log(res.length);
+            //console.log("TEST: En fetch");
+           // console.log(res);
+           // console.log(res.length);
             cotizaciones=res;
             localStorage.setItem("total_cotizaciones", cotizaciones.length);
             Array.from(res).forEach((p,index)=>{
@@ -76,7 +76,7 @@ function loadCotizaciones(cotizrow){
         }).catch(function(error){
             console.log("Problema en el JSON", error)
     });
-        console.log(document.getElementById("cotiz-table"));  
+        //console.log(document.getElementById("cotiz-table"));  
 }//loadCotizaciones
 
 window.addEventListener("load",  function(){
@@ -91,20 +91,20 @@ setTimeout(() => {
   const totalCotiz = localStorage.getItem("total_cotizaciones");
 const dataCotiz = document.getElementById("dataCotizaciones");
 if (totalCotiz == null) {
-    console.log("No hay cotizaciones registrados en la bd");
+    console.log("No hay cotizaciones en localStorage");
     var total = "0";
     insertNumCotiz(total);
 }else{
-	console.log("total de cotizaciones: ",totalCotiz);
+	//console.log("total de cotizaciones: ",totalCotiz);
     insertNumCotiz(totalCotiz);
 }
 function insertNumCotiz(totalCotiz){
-	console.log("insertando cotizaciones:",totalCotiz);
+	//console.log("insertando cotizaciones:",totalCotiz);
     const numCotiz = ` ${totalCotiz} `;
     dataCotiz.innerHTML = numCotiz;
 }
 
-}, 3000);
+}, 2000);
 
 
 

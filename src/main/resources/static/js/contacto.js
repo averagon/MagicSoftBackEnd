@@ -66,7 +66,7 @@ function validateContact(contact_name, contact_company, contact_email, contact_p
     return false;
   }
   if (!phoneRegEx.test(contact_phone.value) || parseInt(contact_phone.value).toString().length != 10) {
-    console.log(parseInt(contact_phone.value), parseInt(contact_phone.value).toString(), parseInt(contact_phone.value).toString().length); //
+    //console.log(parseInt(contact_phone.value), parseInt(contact_phone.value).toString(), parseInt(contact_phone.value).toString().length); //
     message = "El formato del teléfono es incorrecto";
     showErrorMessage(contact_phone, message);
     return false;
@@ -138,7 +138,7 @@ submit.addEventListener('click', function (event) {
 		telefono: cPhone, mensaje: cMsg};
           //FETCH PUT - ADD COTIZACION
 		const URL_MAIN='/api/cotizacion/'; 
-		console.log("TEST: Entra a cotizaciones");
+		//console.log("TEST: Entra a cotizaciones");
 		fetch(URL_MAIN,{
 			method:'POST',
 			headers:{

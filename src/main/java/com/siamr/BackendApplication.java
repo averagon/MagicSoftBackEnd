@@ -14,17 +14,16 @@ public class BackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 	}// MAIN
-
 	
-//	@Bean
-//	public FilterRegistrationBean<JwtFilter> jwtFilter(){
-//		FilterRegistrationBean<JwtFilter> registrationBean = 
-//							new FilterRegistrationBean<>();
-//		registrationBean.setFilter(new JwtFilter());
-//		registrationBean.addUrlPatterns("/api/servicios/*");
-//		registrationBean.addUrlPatterns("/api/usuarios/*");
-//		return registrationBean;
-//	}//jwtFilter
+	@Bean
+	public FilterRegistrationBean<JwtFilter> jwtFilter(){
+		FilterRegistrationBean<JwtFilter> registrationBean = 
+							new FilterRegistrationBean<>();
+		registrationBean.setFilter(new JwtFilter());
+		registrationBean.addUrlPatterns("/api/servicios/*");
+		registrationBean.addUrlPatterns("/api/administrador/*");
+		return registrationBean;
+	}//jwtFilter
 
 } // class BackendApplication
 

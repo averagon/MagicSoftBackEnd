@@ -9,6 +9,8 @@ import com.siamr.model.Administrador;
 
 @Repository
 public interface AdministradorRepository extends JpaRepository <Administrador, Long> {
-	Optional<Administrador> findByNombre(String nombre);
+	//Optional<Administrador> findByNombre(String nombre);
+	Optional<Administrador> findByEmail(String email);
+	
 
 }

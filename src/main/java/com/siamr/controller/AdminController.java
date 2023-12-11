@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.siamr.model.Administrador;
+import com.siamr.model.ChangePassword;
 import com.siamr.service.AdministradorServicios;
 
 @RestController
@@ -49,12 +50,10 @@ public class AdminController {
 	
 	@PutMapping(path="{adminId}") //  http://localhost:8080/api/administrador/8?email=calmatePiojosa@gmail.com
 	public Administrador updateAdministrador(@PathVariable ("adminId") long id, 
-			@RequestParam(required=false) String nombre,
-			@RequestParam(required=false) String email,
-			@RequestParam(required=false) String telefono,
-			@RequestParam(required=false) String contraseña) {
-		return administradorServicios.updateAdministrador(id, nombre,email,telefono, contraseña);
+			@RequestBody ChangePassword changePassword) {
+		return administradorServicios.updateAdministrador(id, changePassword);
 	}
+	
 
 	
 	

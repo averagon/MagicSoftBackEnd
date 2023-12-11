@@ -54,7 +54,7 @@ botonLogin.addEventListener("click", function(event){
 
   if (isValid){
 	  
-	console.log("TEST: Entra al JS");
+	//console.log("TEST: Entra al JS");
 	let adminitradores;
 	const URL_MAIN='/api/administrador/'; 
 	  
@@ -63,9 +63,9 @@ botonLogin.addEventListener("click", function(event){
 		}).then( function(response){
         response.json()
         .then(function (res){
-			console.log("TEST: En fetch");
-			console.log(res);
-			console.log(res.length);
+			//console.log("TEST: En fetch");
+			//console.log(res);
+			//console.log(res.length);
 			adminitradores=res;
 			localStorage.setItem("total_admins", adminitradores.length);
 			
@@ -80,7 +80,7 @@ botonLogin.addEventListener("click", function(event){
 		          showErrorMessage(loginAlert, passLogin, msj_error);
 		          console.log("IncorrectPassword:", msj_error, passLogin.value);
 		        } else {
-		          console.log("Correcto");
+		          console.log("Correcto Usuario y Contraseña");
 		          localStorage.setItem("user", JSON.stringify(user));
 		          //localStorage.setItem("nameAdm", user.nombre);
 		          location.href ='./gestion.html';

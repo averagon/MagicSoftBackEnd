@@ -60,8 +60,8 @@ function createNavbar (nameAdm){
 
 const userLogged = JSON.parse(localStorage.getItem("user"));
 
-        console.log(userLogged.nombre)
-		createNavbar(userLogged.nombre);
+//console.log(userLogged.nombre)
+createNavbar(userLogged.nombre);
 
 const logout = document.getElementById("logout");
 
@@ -94,7 +94,7 @@ logout.addEventListener("click", function(event){
     }else{
         localStorage.setItem("user", "");
         localStorage.setItem("pass", "");
-        localStorage.setItem("nameAdm", "");
+        //localStorage.setItem("nameAdm", "");
         location.href ='./index.html';
     }
 });//logout

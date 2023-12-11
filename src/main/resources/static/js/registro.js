@@ -103,7 +103,7 @@ boton.addEventListener("click", function(event){
 
 	//FETCH PUT - ADD ADMINISTRADOR
 		const URL_MAIN='/api/administrador/'; 
-		console.log("TEST: Entra a registro");
+		//console.log("TEST: Entra a registro");
 		fetch(URL_MAIN,{
 			method:'POST',
 			headers:{

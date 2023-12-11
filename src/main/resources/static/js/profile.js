@@ -1,13 +1,13 @@
 const storedUser = JSON.parse(localStorage.getItem("user"));
-console.log(storedUser);
+//console.log(storedUser);
 const userMail = storedUser.email;
-console.log(userMail);
+//console.log(userMail);
 
 if(storedUser == null){
     console.log("Usuario no registrado");
     location.href ='./login.html';
 } else {
-    console.log(storedUser);//
+    //console.log(storedUser);//
     insertAdminData(storedUser)
 }
 
